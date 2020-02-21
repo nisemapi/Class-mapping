@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chat</title>
-    <script src=".\scripts\chatBackEnd.js"></script>
-</head>
-<body>
-    <div id="chat">
-        <div id="chatTitle">
-            <h2>Name of person</h2>
-            <img href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/71af2666-48c8-4cea-a034-2e66a554d6ac/d33jxg0-573ceaea-ce2f-468e-8bab-372a36fc98df.jpg/v1/fill/w_900,h_675,q_75,strp/random_person_4_by_callmechurch-d33jxg0.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi83MWFmMjY2Ni00OGM4LTRjZWEtYTAzNC0yZTY2YTU1NGQ2YWMvZDMzanhnMC01NzNjZWFlYS1jZTJmLTQ2OGUtOGJhYi0zNzJhMzZmYzk4ZGYuanBnIiwid2lkdGgiOiI8PTkwMCIsImhlaWdodCI6Ijw9Njc1In1dXX0.fOixVTNFYeNE4-aSDXArfPmSuAhmntKthnJMiJsvKjc">
-        </div>
-    <div id="messagesContent">
-        <p>here the messages are going to show</p>
-        </div>
-        <div id="actionBox">
-        <button> :)
-            <!-- hacer icono de emoticon aqui -->
-        </button>
-        <input type="text" id="textM" placeholder="Type a message">
-        <button onclick="sent()"> enviar<!-- insertar un icono de enviar aqui -->
-        </button>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class Mapping</title>
+    <link rel="stylesheet" href="index.css">
+    
+  </head>
+  
+  
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+
+    <div>
+      <input id="email" type="text" placeholder="Email...">
     </div>
+    <div>
+      <input id="password" type="password" placeholder="Password...">
     </div>
-</body>
+    <div>
+      <button id="sign-in">Log In</button>
+      <button id="sign-up">Sign Up</button>
+      <button id="sign-out">Sign Out</button>
+    </div>
+
+  <script src="login.js"></script>
+  </body>
 </html>
