@@ -17,8 +17,8 @@ btnsignIn.addEventListener('click', e=>{
     const auth = firebase.auth();
     const x =auth.signInWithEmailAndPassword(email, password);
     x
-    .then(() => window.location.href="reg.html")
-    .catch(e=> console.log(e.message));
+    .then(() => window.location.href="Salon.html")
+    .catch(e=> alert(e.message));
 })
 
 btnsignUp.addEventListener('click', e=> {
