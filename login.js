@@ -1,23 +1,51 @@
-let passes = {"caro": "1234", "niko": "56"}
+firebase.initializeApp({
+    apiKey: 'AIzaSyBctU_BQdb1118cnTLJsTj7fRQc4DIoKcY',
+    authDomain: 'classmappingb.firebaseapp.com',
+    projectId: 'classmappingb',
+    databaseURL: "https://classmappingb.firebaseio.com/"
+});
 
-function check() {
-    let x = document.getElementById("user").value
-    let y = document.getElementById("pass").value
-    
-    if (y == passes[x]) {
-        window.location.href = "class.html";
+const txtemail = document.getElementById("email");
+const txtpassword = document.getElementById("password");
+const btnsignIn = document.getElementById("sign-in");
+const btnsignUp = document.getElementById("sign-up");
+const btnsignOut = document.getElementById("sign-out");
 
-    } else {
-        alert("mal")
-    }
-}
+btnsignIn.addEventListener('click', e=>{
+    const email = txtemail.value;
+    const password = txtpassword.value;
+    const auth = firebase.auth();
+    const x =auth.signInWithEmailAndPassword(email, password);
+    x
+    .then(() => window.location.href="reg.html")
+    .catch(e=> console.log(e.message));
+})
 
-//funcion para añadir nuevos usuarios al objeto passes
+btnsignUp.addEventListener('click', e=> {
+    //pendiente verificar email
+    const email = txtemail.value;
+    const password = txtpassword.value;
+    const auth = firebase.auth();
+    const x =auth.createUserWithEmailAndPassword(email, password);
+    x
+    .then(user => console.log(user))
+    .catch(e=> console.log(e.message));
+})
 
-function create() {
-console.log(document.getElementById("name").value)
-let newUser = document.getElementById("name").value
-let newPass = document.getElementById("password").value
-passes[newUser] = newPass
-console.log(passes)
-}
+
+
+
+
+
+
+// // Initialize the FirebaseUI Widget using Firebase.
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// ui.start('#firebaseui-auth-container', {
+//     signInOptions: [
+//         {
+//             provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+//             requireDisplayName: false
+//           }
+//     ]
+//     // Other config options...
+ // });
