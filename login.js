@@ -23,13 +23,14 @@ btnsignIn.addEventListener('click', e=>{
 
 btnsignUp.addEventListener('click', e=> {
     //pendiente verificar email
-    const email = txtemail.value;
-    const password = txtpassword.value;
-    const auth = firebase.auth();
-    const x =auth.createUserWithEmailAndPassword(email, password);
-    x
-    .then(user => console.log(user))
-    .catch(e=> console.log(e.message));
+    // const email = txtemail.value;
+    // const password = txtpassword.value;
+    // const auth = firebase.auth();
+    // const x =auth.createUserWithEmailAndPassword(email, password);
+    // x
+    // .then(() => window.location.href= "reg.html")
+    // .catch(e=> alert(e.message));
+    window.location.href="reg.html"
 })
 
 
