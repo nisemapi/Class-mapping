@@ -30,6 +30,9 @@ btnsignIn.addEventListener('click', e=>{
 //     window.location.href="reg.html"
 // })
 
+function signUp() {
+    window.location.href="reg.html";
+}
 
 function create() {
     const nombre = document.getElementById("nombre");
