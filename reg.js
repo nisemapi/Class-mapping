@@ -1,7 +1,4 @@
 
-let nombre = document.getElementById("nombre")
-let telefono = document.getElementById("telefono")
-let silla = document.getElementById("silla")
 
 function crearUsuario() {
     let email = document.getElementById("email").value;
@@ -11,20 +8,32 @@ function crearUsuario() {
         window.location.href = "Salon.html"   
     })
     // .catch(function(error)){
-    //     alert(error)
-    // }
-
-    // nombre = nombre.value
-    // console.log(nombre)
-    // db.collection("users").add({
-    //     nombre: name.value,
-    //     silla: chair.value,
-    //     telefono: phone.value
-    // })
+        //     alert(error)
+        // }
+      
+        let inombre = document.getElementById("nombre").value
+    let itelefono = document.getElementById("telefono").value
+    let isilla = document.getElementById("silla").value
+    let persona = {
+        nombre: inombre,
+        silla: isilla,
+        telefono: itelefono
+    }
+    db.collection("users").add(persona).then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+    }
     // .then(function(docRef) {
-    //     console.log("Document written with ID: ", docRef.id);
-    // })
-    // .catch(function(error) {
-    //     console.error("Error adding document: ", error);
-    // });
+        //     console.log("Document written with ID: ", docRef.id);
+        // })
+        // .catch(function(error) {
+            //     console.error("Error adding document: ", error);
+            // });
+        
+
+function lava() {
+    
 }
