@@ -1,13 +1,14 @@
+var db = firebase.firestore();
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
+
 firebase.initializeApp({
     apiKey: 'AIzaSyBctU_BQdb1118cnTLJsTj7fRQc4DIoKcY',
     authDomain: 'classmappingb.firebaseapp.com',
     projectId: 'classmappingb',
     databaseURL: "https://classmappingb.firebaseio.com/"
 });
-var db = firebase.firestore();
-const firebase = require("firebase");
-// Required for side-effects
-require("firebase/firestore");
 
 const txtemail = document.getElementById("email");
 const txtpassword = document.getElementById("password");
@@ -25,9 +26,9 @@ btnsignIn.addEventListener('click', e=>{
     .catch(e=> alert(e.message));
 })
 
-btnsignUp.addEventListener('click', e=> {
-    window.location.href="reg.html"
-})
+// btnsignUp.addEventListener('click', e=> {
+//     window.location.href="reg.html"
+// })
 
 
 function create() {
