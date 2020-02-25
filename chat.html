@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chat</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src=".\scripts\chatBackEnd.js"></script>
 </head>
 <body>
@@ -19,7 +21,7 @@
         <button> :)
             <!-- hacer icono de emoticon aqui -->
         </button>
-        <input type="text" id="textM" placeholder="Type a message">
+        <textarea id="message" placeholder="Type a message"></textarea>
         <button onclick="sent()"> enviar<!-- insertar un icono de enviar aqui -->
         </button>
     </div>
