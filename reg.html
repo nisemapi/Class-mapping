@@ -17,6 +17,22 @@
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
+    <script>
+        //initialize firebase
+        var firebaseConfig = {
+            apiKey: 'AIzaSyBctU_BQdb1118cnTLJsTj7fRQc4DIoKcY',
+            authDomain: 'classmappingb.firebaseapp.com',
+            projectId: 'classmappingb',
+            databaseURL: "https://classmappingb.firebaseio.com/"
+            };
+        firebase.initializeApp(firebaseConfig);
+
+        //make auth and firestore references
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+    </script>
     <script src="reg.js"></script>
 </body>
 </html>
