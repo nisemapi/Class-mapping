@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="salo-style.css">
 </head>
 <body>
-    <!-- Contraseña <input id="password" type="password"><br> -->
-    Nombre y Apellido <input id="nombre" type="text"><br>
-    Telefono <input id="telefono" type="number"><br>
-    Email <input id="email" type="email"><br>
-    Password <input id="password" type="password"><br>
-    Silla <input id="silla" type="number"><br>
-    <button onclick="crearUsuario()">Crear</button>
-    <button onclick= "window.location.href='index.html'">Home</button>
-    <button onclick= "papaya()">papaya</button>
+    <div id="cabeza">
+
+        <!-- Contraseña <input id="password" type="password"><br> -->
+        Filas <input id="filas" type="number"><br>
+        Columnas <input id="columnas" type="number"><br>
+        <button onclick="crearSalon()">Crear Salon</button>
+    </div>
+
+    <div id="container">
+
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
@@ -34,6 +38,7 @@
         const db = firebase.firestore();
 
     </script>
-    <script src="reg.js"></script>
+    <script src="probandoReg.js"></script>
+    
 </body>
 </html>
