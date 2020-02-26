@@ -22,7 +22,7 @@ function crearUsuario() {
         db.collection("users").add(persona).then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
             console.log(persona);
-            // window.location.href = "Salon.html"
+            window.location.href = "Salon.html"
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
