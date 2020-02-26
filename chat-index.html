@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="chat-index.css">
+</head>
+<body>
+    <div class="wrap">
+        <div id="chatWindow" class="container">
+            <div class="chat-title">
+                <h1>Grupo Bictia</h1>
+                <h2>Online</h2>
+                <figure class="avatar">
+                  <img src="https://www.nocreasnada.com/wp-content/uploads/2019/06/2019-06-04_5cf6bdff09030_warframe-button-1550875935085.jpg" id="img"/></figure>
+              </div>
+            <div class="bubble right"><p>hi</p></div>    
+            <div class="bubble left"><p>ward</p></div>
+        </div>
+        <div id="inputWindow" class="form">
+            <input id="inp" type="text" />
+            <input id="btn" type="button" value="Send" />
+        </div>
+    </div>
+    <script src="chat-index.js"></script>
+</body>
+</html>
