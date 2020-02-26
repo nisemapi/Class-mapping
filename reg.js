@@ -6,7 +6,8 @@ function crearUsuario() {
 
     auth.createUserWithEmailAndPassword(email, password)
     .then(cred => {
-        console.log(cred)
+        // console.log("This is the uid: ", cred.user.uid)
+        let uid = cred.user.uid
         
         let inombre = document.getElementById("nombre").value
         let itelefono = document.getElementById("telefono").value
@@ -14,12 +15,14 @@ function crearUsuario() {
         let persona = {
             nombre: inombre,
             silla: isilla,
-            telefono: itelefono
+            telefono: itelefono,
+            authId: uid
             }  
     
         db.collection("users").add(persona).then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
-            window.location.href = "Salon.html"
+            console.log(persona);
+            // window.location.href = "Salon.html"
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -34,7 +37,6 @@ function crearUsuario() {
 function papaya() {
 
 //obtener el nombre de acuerdo al id del objeto YQid8XkEBcHPL24lMYdt.
-//pendiente vincular el id del usuario al objeto con otro key
 let x = db.collection("users").doc("YQid8XkEBcHPL24lMYdt");
 
 x.get().then(function(doc) {
