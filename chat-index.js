@@ -32,7 +32,7 @@ function postMsg() {
     bubble.classList.add('bubble');
     bubble.classList.add('right');
     // linea output
-    p.textContent = /* aqui falta el nombre de la people*/msg+"  /  "+fecha();
+    p.textContent = "nikolas: " +msg+"  /  "+fecha();
     bubble.appendChild(p);
     inp.value = '';
     chats.insertBefore(bubble, chats.LastChild);

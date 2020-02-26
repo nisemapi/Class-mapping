@@ -35,6 +35,51 @@ html, body { height: 100%; overflow: hidden; }
     border-left: 8px solid #33c;
     border-bottom: 4px solid transparent;
 }
+
+.chat-title {
+    flex: 0 1 45px;
+    position: relative;
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+text-transform: uppercase;
+text-align: left;
+padding: 10px 10px 10px 50px;
+
+h1, h2 {
+  font-weight: normal;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: rgba(255, 255, 255, .5);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.avatar {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 9px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.24);
+  
+}
+}
+
+#img {
+    width: 30%;
+    height: 30%;
+  }
   
   
     
