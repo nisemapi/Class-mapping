@@ -3,6 +3,7 @@ let columnas = document.getElementById("columnas")
 let silla = 0
 let contenedor = document.getElementById("container")
 
+
 function crearSalon() {
     let f= filas.value
     let c= columnas.value
@@ -43,5 +44,27 @@ function crearSalon() {
     document.getElementById("container").style.display ="grid";
     document.getElementById("container").style.gridTemplateColumns = "repeat("+c+", auto)";
     document.getElementById("cabeza").style.visibility = "hidden";
-
+    document.getElementById("banner").style.visibility = "visible";
 }
+function logout(){
+    auth.signOut().then(() => {
+        window.location.href = "index.html";
+        console.log("El usuario ha cerrado sesión")
+    });
+}
+
+console.log(auth.gh)
+
+auth.onAuthStateChanged( user => {
+    let uid = user.uid
+    let nombre = document.getElementById("h3-nombre");
+    // console.log("uid: ", uid);
+    db.collection("users").where("authId", "==", uid)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                console.log(doc.data().nombre);
+                nombre.innerHTML = doc.data().nombre
+            });
+        });
+});
