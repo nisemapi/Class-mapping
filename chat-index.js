@@ -8,7 +8,7 @@ firebase.initializeApp({
   appId: "1:992942752060:web:c901082e64f78189019e39",
   measurementId: "G-RTRGJNB8P6"
 });
-var db = firebase.firestore(),docIds=[],unidos={};
+var db = firebase.firestore(),docIds=[],unidos={},doc;
 
 var btn 	= document.getElementById('btn'), 
     inp 	= document.getElementById('inp'), 
