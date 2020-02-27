@@ -1,15 +1,43 @@
-firebase.initializeApp({
-     apiKey: "AIzaSyBctU_BQdb1118cnTLJsTj7fRQc4DIoKcY",
-  authDomain: "classmappingb.firebaseapp.com",
-  databaseURL: "https://classmappingb.firebaseio.com",
-  projectId: "classmappingb",
-  storageBucket: "classmappingb.appspot.com",
-  messagingSenderId: "992942752060",
-  appId: "1:992942752060:web:c901082e64f78189019e39",
-  measurementId: "G-RTRGJNB8P6"
-});
-var db = firebase.firestore(),docIds=[],unidos={};
+var docIds=[],unidos={},counter;
+realTime = () => db.collection("chat")
+.get()
+.then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.data().name} => ${doc.data().message}`);
+        docIds.push(`${doc.id}`);
 
+        // experimento
+    var bubble 	= document.createElement('div'),
+        p 		= document.createElement('p');
+    bubble.classList.add('bubble');
+    bubble.classList.add('right');
+    // linea output
+    p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
+    bubble.appendChild(p);
+    chats.insertBefore(bubble, chats.LastChild);
+    
+});
+});
+//scroll fuction 
+function scroll(){
+   var s=document.getElementById("chatWindow");
+   s.scrollTop = s.scrollHeight;
+};
+realTime();
+scroll();
+/* //autenticacion para nombre
+auth.onAuthStateChanged( user => {
+    let uid = user.uid
+    let nombre = document.getElementById("h3-nombre");
+    // console.log("uid: ", uid);
+    db.collection("users").where("authId", "==", uid)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                nombre.innerHTML = doc.data().nombre
+            });
+        });
+}); */
 var btn 	= document.getElementById('btn'), 
     inp 	= document.getElementById('inp'), 
     chats	= document.getElementById('chatWindow'),
@@ -22,12 +50,9 @@ inp.addEventListener('keyup', function(e) {
 });
 //enviar mensague
 function postMsg() {
-    var msg     = inp.value,
-        bubble 	= document.createElement('div'),
+    var msg     = inp.value;
+        /* bubble 	= document.createElement('div'),
         p 		= document.createElement('p');
-    
-    // console.log ("your message had been sent => "+ msg);
-
     if (msg.trim().length <= 0) { return; }
     bubble.classList.add('bubble');
     bubble.classList.add('right');
@@ -35,20 +60,20 @@ function postMsg() {
     p.textContent = "nikolas: " +msg+"  /  "+fecha();
     bubble.appendChild(p);
     inp.value = '';
-    chats.insertBefore(bubble, chats.LastChild);
+    chats.insertBefore(bubble, chats.LastChild); */
+    if (msg.trim().length <= 0) { return; }
+    inp.value = '';
     unidos = {
-        name: "pepito perez :)",
+        name: "nikolas",
         message: msg,
-        time: fecha()
+        time: fecha(),
+        id:  counter++
     }; 
-     writeSomething();
-    var s=document.getElementById("chatWindow");
-//    s.scrollTo(0,s.offsetHeight);
-      s.scrollTop = s.scrollHeight;
-    
+    writeSomething();
+     realTime();
+     scroll();
 };
 //function enviar datos
-
  writeSomething = () => db.collection("chat").add(unidos)
             .then(function(docRef){
                 console.log("Document written with ID: ", docRef.id);
@@ -65,15 +90,8 @@ function fecha(){
     if (m<10){
         m = "0"+m;
      };
-entireDate = h+":"+m;
-return (entireDate);
-};
-    readAll = () => db.collection("users").get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) =>{
-            var element = e.val();
-            var nombre = element.name;
-            var message = element.message;
-            console.log(`${doc.id}`);
-        });
-    }) 
+    entireDate = h+":"+m;
+    return (entireDate);
+    };
+// fin funcion hora
+    
