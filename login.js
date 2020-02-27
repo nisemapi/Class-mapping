@@ -23,7 +23,15 @@ function signUp() {
     window.location.href="reg.html";
 }
 
-
+function recuperarcontr() {
+    var emailAddress = txtemail.value;
+    auth.sendPasswordResetEmail(emailAddress)
+    .then(function(){
+        alert('Se ha enviado un correo a su cuenta. Por favor sigue los pasos indicados.');
+    }, function(error){
+        console.log(error)
+    })
+}
 
 
 
