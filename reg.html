@@ -7,11 +7,26 @@
 </head>
 <body>
     <!-- Contraseña <input id="password" type="password"><br> -->
-    Nombre y Apellido <input id="nombre" type="text"><br>
-    Telefono <input id="telefono" type="number"><br>
-    Email <input id="email" type="email"><br>
-    Password <input id="password" type="password"><br>
-    Silla <input id="silla" type="number"><br>
+    <form id="crear-usuario" >
+        <input id="nombre" type="text" placeholder="Ingresa tu nombre"><br>
+        <input id="telefono" type="number" placeholder="Ingresa tu # celular"><br>
+        <input id="email" type="email" placeholder="Ingresa tu e-mail"><br>
+        <input id="password" type="password" placeholder="Ingresa tu contraseña"><br>
+        <input id="password2" type="password" placeholder="Confirma tu contraseña"><br>
+        <p>Quieres crear un salón?</p>
+        <select onchange="mostrar()" name="opcion-salon" id="opcion-salon">
+            <option value="si">Si, crear salón nuevo</option>
+            <option value="no" selected>No, ya tengo un ID de salón</option>
+        </select>
+    </form>
+    <form id="crear-salon" style="display: none;">
+        <input type="text" name="filas" id="filas" placeholder="¿Cuántas filas?"><br>
+        <input type="text" name="columnas" id="columnas" placeholder="¿Cuántas columnas?">
+    </form>
+    <form id="ingresar-salon">
+        <input type="text" id="id-salon" placeholder="Ingresa el ID del salón">
+    </form>
+
     <button onclick="crearUsuario()">Crear</button>
     <button onclick= "window.location.href='index.html'">Home</button>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>

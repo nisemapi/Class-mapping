@@ -1,38 +1,53 @@
+let formularioCrearSalon = document.getElementById("crear-salon")
+let si = document.getElementById("si")
+let ingresarSalon = document.getElementById("ingresar-salon")
 
+function mostrar() {
+    if(formularioCrearSalon.style.display == "none") {
+        formularioCrearSalon.style.display = "block";
+        ingresarSalon.style.display = "none";
+    } else {
+        formularioCrearSalon.style.display = "none";
+        ingresarSalon.style.display = "block";
+
+    }
+}
 
 function crearUsuario() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(cred => {
-        // console.log("This is the uid: ", cred.user.uid)
-        let uid = cred.user.uid
+    let password2 = document.getElementById("password2").value;
+    
+    if (password == password2) {
+    
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(cred => {
+            // console.log("This is the uid: ", cred.user.uid)
+            let uid = cred.user.uid
+            
+            let inombre = document.getElementById("nombre").value
+            let itelefono = document.getElementById("telefono").value
+            let persona = {
+                nombre: inombre,
+                telefono: itelefono,
+                authId: uid
+                }  
         
-        let inombre = document.getElementById("nombre").value
-        let itelefono = document.getElementById("telefono").value
-        let isilla = document.getElementById("silla").value
-        let persona = {
-            nombre: inombre,
-            silla: isilla,
-            telefono: itelefono,
-            authId: uid
-            }  
-    
-        db.collection("users").add(persona).then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            console.log(persona);
-            window.location.href = "Salon.html"
+            db.collection("users").add(persona).then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                console.log(persona);
+                window.location.href = "Salon.html"
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+                window.location.href = "Salon.html"
+            });
+        
         })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
-            window.location.href = "Salon.html"
-        });
-    
-    })
-    .catch(error => {
-        alert(error);
-    })
+        .catch(error => {
+            alert(error);
+        })
+    } else { alert("Error: passwords don't match.")}
 }
 function papaya() {
 
