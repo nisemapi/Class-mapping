@@ -10,6 +10,8 @@ function crearSalon(f,c) {
             //crear flip-cards con divs
             let div1 = document.createElement("div");
             div1.setAttribute("class", "flip-card");
+            div1.setAttribute("id", silla);
+            div1.setAttribute("onClick", "reply_click(this.id)" );
             contenedor.appendChild(div1);
             let div2 = document.createElement("div");
             div2.setAttribute("class", "flip-card-inner");
@@ -34,6 +36,7 @@ function crearSalon(f,c) {
             div5.appendChild(p1);
             let p2 = document.createElement("p");
             div5.appendChild(p2);
+            
         }
     }
 
@@ -68,11 +71,10 @@ db.collection("users").where("authId", "==", uid)
                         f = doc.data().filas
                         c = doc.data().columnas
                         crearSalon(f,c)
-                    }
-                    querySnapshot.forEach(function(doc){
                         let nombreSalon = document.getElementById("h3-id-salon")
                         nombreSalon.innerHTML = doc.data().nombre +" "+ salonActual
-                    })
+                        
+                    }
                 })
         })
         querySnapshot.forEach(function (doc) {
@@ -80,3 +82,9 @@ db.collection("users").where("authId", "==", uid)
         });
     })
 });
+
+// let card = document.getElementsByClassName("flip-card-inner")
+
+function reply_click(click) {
+    alert(click)
+}
