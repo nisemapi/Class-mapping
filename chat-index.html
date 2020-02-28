@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    
     <link rel="stylesheet" href="chat-index.css">
 </head>
 <body>
@@ -25,6 +24,25 @@
             <input id="btn" type="button" value="Send" />
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
+    <script>
+        //initialize firebase
+        var firebaseConfig = {
+            apiKey: 'AIzaSyBctU_BQdb1118cnTLJsTj7fRQc4DIoKcY',
+            authDomain: 'classmappingb.firebaseapp.com',
+            projectId: 'classmappingb',
+            databaseURL: "https://classmappingb.firebaseio.com/"
+            };
+        firebase.initializeApp(firebaseConfig);
+
+        //make auth and firestore references
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+    </script>
     <script src="chat-index.js"></script>
 </body>
 </html>
