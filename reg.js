@@ -74,12 +74,12 @@ function crearUsuario() {
                         idSalon: salonId
                     }
                     db.collection("users").add(persona).then(function (docRef) {
-                        // window.location.href = "Salon.html"
+                        window.location.href = "Salon.html"
                         console.log(persona)
                     })
                         .catch(function (error) {
                             console.error("Error adding document: ", error);
-                            // window.location.href = "Salon.html"
+                            window.location.href = "Salon.html"
                         });
                 }
                 //PENDIENTE usar awaits para las promesas.
