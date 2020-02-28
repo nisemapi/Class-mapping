@@ -1,14 +1,30 @@
 var btn 	= document.getElementById('btn'), 
-    inp 	= document.getElementById('inp'), 
-    chats	= document.getElementById('chatWindow'),
-    bubble 	= document.createElement('div'),
-    p 		= document.createElement('p');
+inp 	= document.getElementById('inp'), 
+chats	= document.getElementById('chatWindow'),
+bubble 	= document.createElement('div'),
+p 		= document.createElement('p');
 var docIds=[],unidos={},counter = 0;
+//scroll fuction 
 function scroll(){
    var s=document.getElementById("chatWindow");
    s.scrollTop = s.scrollHeight;
 };
 realTime = () => db.collection("chat")
+.onSnapshot(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        var bubble 	= document.createElement('div'),
+        p 		= document.createElement('p');
+    bubble.classList.add('bubble');
+    bubble.classList.add('right');
+    // linea output
+    p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
+    bubble.appendChild(p);
+    chats.insertBefore(bubble, chats.LastChild);
+    scroll()
+    });
+    
+});
+/* realTime = () => db.collection("chat")
 .get()
 .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -26,8 +42,7 @@ realTime = () => db.collection("chat")
     scroll()
     
 });
-});
-//scroll fuction 
+}); */
 realTime();
 /* //autenticacion para nombre
 auth.onAuthStateChanged( user => {
