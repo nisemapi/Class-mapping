@@ -1,11 +1,19 @@
-var docIds=[],unidos={},counter;
+var btn 	= document.getElementById('btn'), 
+    inp 	= document.getElementById('inp'), 
+    chats	= document.getElementById('chatWindow'),
+    bubble 	= document.createElement('div'),
+    p 		= document.createElement('p');
+var docIds=[],unidos={},counter = 0;
+function scroll(){
+   var s=document.getElementById("chatWindow");
+   s.scrollTop = s.scrollHeight;
+};
 realTime = () => db.collection("chat")
 .get()
 .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         console.log(`${doc.data().name} => ${doc.data().message}`);
         docIds.push(`${doc.id}`);
-
         // experimento
     var bubble 	= document.createElement('div'),
         p 		= document.createElement('p');
@@ -15,16 +23,12 @@ realTime = () => db.collection("chat")
     p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
     bubble.appendChild(p);
     chats.insertBefore(bubble, chats.LastChild);
+    scroll()
     
 });
 });
 //scroll fuction 
-function scroll(){
-   var s=document.getElementById("chatWindow");
-   s.scrollTop = s.scrollHeight;
-};
 realTime();
-scroll();
 /* //autenticacion para nombre
 auth.onAuthStateChanged( user => {
     let uid = user.uid
@@ -38,11 +42,6 @@ auth.onAuthStateChanged( user => {
             });
         });
 }); */
-var btn 	= document.getElementById('btn'), 
-    inp 	= document.getElementById('inp'), 
-    chats	= document.getElementById('chatWindow'),
-    bubble 	= document.createElement('div'),
-    p 		= document.createElement('p');
 // lector de click y enter
 btn.addEventListener('click', postMsg);
 inp.addEventListener('keyup', function(e) {
@@ -66,10 +65,11 @@ function postMsg() {
     unidos = {
         name: "nikolas",
         message: msg,
-        time: fecha(),
-        id:  counter++
+        time: fecha(true),
+        id: fecha(false)
     }; 
     writeSomething();
+    scroll();
      realTime();
      scroll();
 };
@@ -84,14 +84,51 @@ function postMsg() {
             .catch(function(error) {
                     console.error("Error sending message: ", error);
                 }); 
-//funcion de la hora
-function fecha(){
-    var today = new Date(), h = today.getHours(), m = today.getMinutes(), entireDate;
-    if (m<10){
-        m = "0"+m;
+//funcion de la fecha hora
+function fecha(d){
+    var today = new Date(),a=today.getFullYear(),m = today.getMonth(), h = today.getHours(), min = today.getMinutes(),seg = today.getSeconds(), entireDate;
+    if (d==true){
+    if (min<10){
+        min = "0"+min;
      };
-    entireDate = h+":"+m;
+    entireDate = h+":"+min;
+    return (entireDate);}
+    else{
+    entireDate= a+m+d+h+min+seg;
     return (entireDate);
+    }
     };
-// fin funcion hora
-    
+ // fin funcion hora
+
+/*/super función
+auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtiene el usuario que inició sesión.
+    let salonActual = ""
+    let f = 0
+    let c = 0
+    let uid = user.uid
+    let nombre = document.getElementById("h3-nombre");
+    // console.log("uid: ", uid);
+    db.collection("users").where("authId", "==", uid)
+        .get()
+        .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                salonActual = doc.data().idSalon
+                // console.log("salonId: " + doc.data().idSalon)
+                db.collection("salones").doc(salonActual).get()
+                    .then(function (doc) {
+                        if (doc.exists) {
+                            f = doc.data().filas
+                            c = doc.data().columnas
+                            crearSalon(f,c)
+                            let nombreSalon = document.getElementById("h3-id-salon")
+                            nombreSalon.innerHTML = salonActual
+                            nombre.innerHTML = doc.data().nombre;
+                            
+                        }
+                    })
+            })
+            querySnapshot.forEach(function (doc) {
+                nombre.innerHTML = doc.data().nombre
+            });
+        })
+    });*/
