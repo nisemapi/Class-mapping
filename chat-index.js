@@ -44,7 +44,7 @@ realTime = () => db.collection("chat")
 });
 }); */
 realTime();
-/* //autenticacion para nombre
+ //autenticacion para nombre
 auth.onAuthStateChanged( user => {
     let uid = user.uid
     let nombre = document.getElementById("h3-nombre");
@@ -54,9 +54,19 @@ auth.onAuthStateChanged( user => {
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 nombre.innerHTML = doc.data().nombre
+                var idSalon = doc.data().idSalon;
             });
         });
-}); */
+        db.collection("salones").doc(idSalon)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                nombre.innerHTML = doc.data().nombre
+                
+            });
+        });
+    
+}); 
 // lector de click y enter
 btn.addEventListener('click', postMsg);
 inp.addEventListener('keyup', function(e) {
@@ -65,28 +75,15 @@ inp.addEventListener('keyup', function(e) {
 //enviar mensague
 function postMsg() {
     var msg     = inp.value;
-        /* bubble 	= document.createElement('div'),
-        p 		= document.createElement('p');
-    if (msg.trim().length <= 0) { return; }
-    bubble.classList.add('bubble');
-    bubble.classList.add('right');
-    // linea output
-    p.textContent = "nikolas: " +msg+"  /  "+fecha();
-    bubble.appendChild(p);
-    inp.value = '';
-    chats.insertBefore(bubble, chats.LastChild); */
     if (msg.trim().length <= 0) { return; }
     inp.value = '';
     unidos = {
-        name: "nikolas",
+        name: document.getElementById("h3-nombre"),
         message: msg,
         time: fecha(true),
         id: fecha(false)
     }; 
     writeSomething();
-    scroll();
-     realTime();
-     scroll();
 };
 //function enviar datos
  writeSomething = () => db.collection("chat").add(unidos)
