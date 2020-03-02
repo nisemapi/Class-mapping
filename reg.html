@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reg.css">
     <title>Document</title>
 </head>
+
 <body>
+
     <!-- Contraseña <input id="password" type="password"><br> -->
-    Nombre y Apellido <input id="nombre" type="text"><br>
-    Telefono <input id="telefono" type="number"><br>
-    Email <input id="email" type="email"><br>
-    Password <input id="password" type="password"><br>
-    Silla <input id="silla" type="number"><br>
-    <button onclick="crearUsuario()">Crear</button>
-    <button onclick= "window.location.href='index.html'">Home</button>
+    <div class="formulario">
+        <div class="content">
+            <div class="nom">
+                Nombres <input id="nombre" type="text"><br>
+            </div>
+            <div class="ap">
+                Apellidos <input id="apellido" type="text"><br>
+            </div>
+            <div class="correo">
+                Email <input id="email" type="email"><br>
+            </div>
+            <div class="tel">
+                Teléfono <input id="telefono" type="number"><br>
+            </div>
+            <div class="puesto">
+                Silla <input id="silla" type="number"><br>
+            </div>
+            <div class="clave">
+                Password <input id="clave" type="clave"><br>
+            </div>
+        </div>
+
+        <div class="botones">
+            <button onclick="crearUsuario()">Crear</button>
+            <button onclick="window.location.href='index.html'">Home</button>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
@@ -24,7 +49,7 @@
             authDomain: 'classmappingb.firebaseapp.com',
             projectId: 'classmappingb',
             databaseURL: "https://classmappingb.firebaseio.com/"
-            };
+        };
         firebase.initializeApp(firebaseConfig);
 
         //make auth and firestore references
@@ -35,4 +60,5 @@
     </script>
     <script src="reg.js"></script>
 </body>
+
 </html>

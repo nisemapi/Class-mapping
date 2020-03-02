@@ -1,0 +1,87 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 97vh;
+    align-items: center;
+    background-image: url(fondo.jpg);
+    background-size: cover;
+}
+.formulario {
+    width: 692px;
+    height: fit-content;
+    border-radius: 50px 0px 50px 0px;
+    background-color: #ffffff30;
+}
+
+.content {
+    border: rgb(255, 255, 255) solid 0px;
+    padding-top: 60px;
+    margin-left: 50px;
+    margin-right: 50px;   
+    width: 590px;
+}
+
+div{
+    width: 276px;
+    border: white solid 0px;
+    margin-bottom: 15px;
+}
+.nom, .ap, .tel, .correo, .clave, .puesto{
+    color: white;
+    font-family: sans-serif;
+}
+#nombre {
+    margin-left: 22px;
+    border-radius: 5px;
+    width: 180px;
+}
+#apellido{
+    margin-left: 22px;
+    border-radius: 5px;
+    width: 170px;
+}
+.ap{
+    width: 276px;
+    float: right;
+    margin-top: -39px;
+}
+#email{
+    margin-left: 47px;
+    border-radius: 5px;
+    width: 483px;
+}
+.correo{
+    width: 580px;
+}
+#telefono{
+    margin-left: 26px;
+    border-radius: 5px;
+    width: 180px;
+}
+#clave{
+    margin-left: 16px;
+    border-radius: 5px;
+    width: 180px;
+}
+#silla{
+    margin-left: 56px;
+    border-radius: 5px;
+    width: 170px;
+}
+.puesto{
+    float: right;
+    margin-top: -39px;
+}
+.botones{
+    padding-bottom: 50px;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-family: sans-serif;
+}
+button{
+    border-radius: 5px;
+    padding: 3px 9px 3px 5px;
+    margin-right: 15px;
+    color: #7400c7;
+    border: solid 0.5px #7400c7;
+}
