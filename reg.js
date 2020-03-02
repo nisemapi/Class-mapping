@@ -30,6 +30,7 @@ function crearUsuario() {
                     let nombreSalon = document.getElementById("nombre-salon").value;
                     let ifilas = document.getElementById("filas").value;
                     let icolumnas = document.getElementById("columnas").value;
+
                     let salon = {
                         nombre: nombreSalon,
                         filas: ifilas,
@@ -49,12 +50,12 @@ function crearUsuario() {
                             idSalon: salonId
                         }
                         db.collection("users").add(persona).then(function (docRef) {
-                            // window.location.href = "Salon.html"
+                            window.location.href = "Salon.html"
                             console.log(persona)
                         })
                             .catch(function (error) {
                                 console.error("Error adding document: ", error);
-                                // window.location.href = "Salon.html"
+                                window.location.href = "Salon.html"
                             });
                     })
                         .catch(function (error) {
