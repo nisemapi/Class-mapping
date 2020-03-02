@@ -24,49 +24,30 @@ realTime = () => db.collection("chat")
     });
     
 });
-/* realTime = () => db.collection("chat")
-.get()
-.then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.data().name} => ${doc.data().message}`);
-        docIds.push(`${doc.id}`);
-        // experimento
-    var bubble 	= document.createElement('div'),
-        p 		= document.createElement('p');
-    bubble.classList.add('bubble');
-    bubble.classList.add('right');
-    // linea output
-    p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
-    bubble.appendChild(p);
-    chats.insertBefore(bubble, chats.LastChild);
-    scroll()
-    
-});
-}); */
 realTime();
- //autenticacion para nombre
+ //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
     let uid = user.uid
     let nombre = document.getElementById("h3-nombre");
     // console.log("uid: ", uid);
     db.collection("users").where("authId", "==", uid)
         .get()
-        .then(function(querySnapshot) {
+        .then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
                 nombre.innerHTML = doc.data().nombre
-                var idSalon = doc.data().idSalon;
+                var salonActual = doc.data().idSalon;
+                db.collection("salones").doc(salonActual).get()
+                .then(function(doc){
+                    let nombreSalon = document.getElementById("h3-id-salon")
+                    nombreSalon.innerHTML = doc.data().nombre
+            
+            });
             });
         });
-        db.collection("salones").doc(idSalon)
-        .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                nombre.innerHTML = doc.data().nombre
-                
-            });
+        
         });
     
-}); 
+
 // lector de click y enter
 btn.addEventListener('click', postMsg);
 inp.addEventListener('keyup', function(e) {
@@ -106,10 +87,17 @@ function fecha(d){
     entireDate = h+":"+min;
     return (entireDate);}
     else{
-    entireDate= a+m+d+h+min+seg;
+    entireDate= a+(m*100)+(d*10)+h+min+seg;
     return (entireDate);
     }
     };
+//funcion log out
+function logout() {
+    auth.signOut().then(() => {
+        window.location.href = "index.html";
+        console.log("El usuario ha cerrado sesión")
+    });
+}
  // fin funcion hora
 
 /*/super función
