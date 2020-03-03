@@ -90,7 +90,7 @@ function fecha(d){
     entireDate = h+":"+min;
     return (entireDate);}
     else{
-    entireDate= (a*10000)+(m*1000)+(d*100)+(h*10)+min+(seg*0,1)+(mili*0,01);
+    entireDate= (a*100)+(m*10)+(d)+(h*0,01)+(min*0,001)+(seg*0,0001)+(mili*0,00001);
     return (entireDate);
     }
     };
