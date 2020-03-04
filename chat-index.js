@@ -3,7 +3,7 @@ inp 	= document.getElementById('inp'),
 chats	= document.getElementById('chatWindow'),
 bubble 	= document.createElement('div'),
 p 		= document.createElement('p');
-var docIds=[],unidos={},salonActual = "",nombrecito="";
+var docIds=[],unidos={},salonActual = "",userName="";
 //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
    let uid = user.uid
@@ -13,14 +13,15 @@ auth.onAuthStateChanged( user => {
        .then(function(querySnapshot){
            querySnapshot.forEach(function(doc) {
                salonActual = doc.data().idSalon;
-               nombrecito =doc.data().nombre;
-               document.getElementById("h3-nombre").innerHTML = nombrecito 
-               db.collection("salones").doc(salonActual).get()
-               .then(function(doc){
+               userName =doc.data().nombre;
+               document.getElementById("h3-nombre").innerHTML = userName 
+              // nombre salon 
+                 db.collection("salones").doc(salonActual).get()
+                .then(function(doc){
                    let nombreSalon = document.getElementById("h3-id-salon")
                    nombreSalon.innerHTML = doc.data().nombre
            
-           });
+           }); 
            });
        });
        
@@ -31,7 +32,7 @@ function scroll(){
    var s=document.getElementById("chatWindow");
    s.scrollTop = s.scrollHeight;
 };
-realTime = () => db.collection("chat").orderBy("id", "asc")
+/* realTime = () => db.collection("chat").orderBy("id", "asc")
 .onSnapshot(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         bubble 	= document.createElement('div'),
@@ -45,6 +46,33 @@ realTime = () => db.collection("chat").orderBy("id", "asc")
     scroll()
     });
     
+}); */
+realTime = () => db.collection("chat").orderBy("id", "asc")
+.onSnapshot(function(querySnapshot) {
+   var totalMessages = [];
+   querySnapshot.forEach(function(doc){
+       totalMessages.push(doc.data());
+       console.log(totalMessages);
+    
+//    });
+     totalMessages.forEach(function mostrar(){
+    var messageName = doc.data().name;
+    bubble 	= document.createElement('div'),
+    p 		= document.createElement('p');
+    bubble.classList.add('bubble');
+     if (userName == messageName){
+       bubble.classList.add('right');
+     }else{
+         bubble.classList.add('left');  
+        };
+    // linea output
+    p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
+    bubble.appendChild(p);
+    chats.insertBefore(bubble, chats.LastChild);
+    scroll()
+     })
+        
+});
 });
 realTime();
 
@@ -60,7 +88,7 @@ function postMsg() {
     inp.value = '';
     //objeto
     unidos = {
-        name: nombrecito,
+        name: userName,
         message: msg,
         time: fecha(true),
         id: fecha(false),
@@ -82,7 +110,7 @@ function postMsg() {
                 }); 
 //funcion de la fecha hora
 function fecha(d){
-    var today = new Date(),a=today.getFullYear(),m = today.getMonth(), h = today.getHours(), min = today.getMinutes(),seg = today.getSeconds(), mili = today.getMilliseconds(), entireDate;
+    var today = new Date(),a=today.getFullYear(),m = today.getMonth(),day = today.getDay(), h = today.getHours(), min = today.getMinutes(),seg = today.getSeconds(), mili = today.getMilliseconds(), entireDate;
     if (d==true){
     if (min<10){
         min = "0"+min;
@@ -90,7 +118,7 @@ function fecha(d){
     entireDate = h+":"+min;
     return (entireDate);}
     else{
-    entireDate= (a*100)+(m*10)+(d)+(h*0,01)+(min*0,001)+(seg*0,0001)+(mili*0,00001);
+    entireDate= Math.imul(a , 100)+Math.imul(m, 10)+day+Math.imul(h, 0,01)+Math.imul(min, 0,001)+Math.imul(seg, 0,0001)+Math.imul(mili, 0,00001);
     return (entireDate);
     }
     };
