@@ -78,6 +78,9 @@ function logout() {
 
 //super función
 auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtiene el usuario que inició sesión.
+    if (user==null){
+        window.location.href = "index.html";
+    }else{
     let f = 0
     let c = 0
     let nombre = document.getElementById("h3-nombre");
@@ -109,7 +112,7 @@ auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtie
                 userId = doc.id
             });
         })
-
+    }
 });
 
 //asigna datos de usuario con click 

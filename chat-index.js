@@ -3,9 +3,12 @@ inp 	= document.getElementById('inp'),
 chats	= document.getElementById('chatWindow'),
 bubble 	= document.createElement('div'),
 p 		= document.createElement('p');
-var docIds=[],unidos={},salonActual = "",userName="";
+var docIds=[],unidos={},salonActual = "",userName="", totalMessages = [];
 //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
+    if (user==null){
+        window.location.href = "index.html";
+    }else{
    let uid = user.uid
    // console.log("uid: ", uid);
    db.collection("users").where("authId", "==", uid)
@@ -24,7 +27,7 @@ auth.onAuthStateChanged( user => {
            }); 
            });
        });
-       
+    }
        });
    
 //scroll fuction 
@@ -47,14 +50,10 @@ function scroll(){
     });
     
 }); */
-realTime = () => db.collection("chat").orderBy("id", "asc")
-.onSnapshot(function(querySnapshot) {
-   var totalMessages = [];
-   querySnapshot.forEach(function(doc){
-       totalMessages.push(doc.data());
-       console.log(totalMessages);
-    
-//    });
+realTime = () => db.collection("chat").orderBy("id", "asc").where("idSalon", "==" , salonActual)
+    .onSnapshot(function(doc) {
+    console.log(doc.data());
+    // console.log(totalMessages);
      totalMessages.forEach(function mostrar(){
     var messageName = doc.data().name;
     bubble 	= document.createElement('div'),
@@ -70,9 +69,8 @@ realTime = () => db.collection("chat").orderBy("id", "asc")
     bubble.appendChild(p);
     chats.insertBefore(bubble, chats.LastChild);
     scroll()
-     })
+     });
         
-});
 });
 realTime();
 
@@ -118,7 +116,7 @@ function fecha(d){
     entireDate = h+":"+min;
     return (entireDate);}
     else{
-    entireDate= Math.imul(a , 100)+Math.imul(m, 10)+day+Math.imul(h, 0,01)+Math.imul(min, 0,001)+Math.imul(seg, 0,0001)+Math.imul(mili, 0,00001);
+    entireDate= (a*1000)+Math.imul(m, 10)+day+Math.imul(h, 0,01)+Math.imul(min, 0,001)+Math.imul(seg, 0,0001)+Math.imul(mili, 0,00001);
     return (entireDate);
     }
     };
