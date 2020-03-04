@@ -5,16 +5,21 @@ const btnsignIn = document.getElementById("sign-in");
 const btnsignUp = document.getElementById("sign-up");
 const btnsignOut = document.getElementById("sign-out");
 
-btnsignIn.addEventListener('click', e=>{
+btnsignIn.addEventListener('click', login) 
+// btn.addEventListener('click', login)
+txtpassword.addEventListener('keyup', function(e) {
+    if (e.keyCode == 13) { login() }
+})
+
+function login(){
     const email = txtemail.value;
     const password = txtpassword.value;
     const auth = firebase.auth();
     const x =auth.signInWithEmailAndPassword(email, password);
     x
     .then(() => window.location.href="Salon.html")
-    .catch(e=> alert(e.message));
-})
-
+    .catch(login=> alert(login.message));
+}
 // btnsignUp.addEventListener('click', e=> {
 //      window.location.href="reg.html"
 //  })
