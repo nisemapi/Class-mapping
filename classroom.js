@@ -50,7 +50,7 @@ function crearSalon(f, c) {
 
     document.getElementById("container").style.display = "grid";
     document.getElementById("container").style.gridTemplateColumns = "repeat(" + c + ", auto)"; //crea las columnas
-    
+
 }
 //cerrar sesión y volver a login
 function logout() {
@@ -63,60 +63,57 @@ function logout() {
 
 //super función
 auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtiene el usuario que inició sesión.
-    if (user==null){
+    if (user == null) {
         window.location.href = "index.html";
-    }else{
+    } else {
         let f = 0
         let c = 0
         let nombre = document.getElementById("h3-nombre");
         uid = user.uid
-        
-    // console.log("uid: ", uid);
-    db.collection("users").where("authId", "==", uid)
-        .get()
-        .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                salonActual = doc.data().idSalon
-                console.log("salon actual: ", salonActual)
-                db.collection("salones").doc(salonActual).get()
-                .then(function (doc) {
-                    if (doc.exists) {
-                        f = doc.data().filas
-                        c = doc.data().columnas
-                        crearSalon(f, c)
-                        let nombreSalon = document.getElementById("h3-id-salon")
-                        nombreSalon.innerHTML = doc.data().nombre + " " + salonActual
-                        
-                    }
-                    actualizarSillas()
+
+        // console.log("uid: ", uid);
+        db.collection("users").where("authId", "==", uid)
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    salonActual = doc.data().idSalon
+                    db.collection("salones").doc(salonActual).get()
+                        .then(function (doc) {
+                            if (doc.exists) {
+                                f = doc.data().filas
+                                c = doc.data().columnas
+                                crearSalon(f, c)
+                                let nombreSalon = document.getElementById("h3-id-salon")
+                                nombreSalon.innerHTML = doc.data().nombre + " " + salonActual
+
+                            }
+                            actualizarSillas()
+                        })
                 })
+                querySnapshot.forEach(function (doc) {
+                    nombre.innerHTML = doc.data().nombre
+                    nombreUsuario = doc.data().nombre
+                    telefonoUsuario = doc.data().telefono
+                    userId = doc.id
+                });
             })
-            querySnapshot.forEach(function (doc) {
-                nombre.innerHTML = doc.data().nombre
-                nombreUsuario = doc.data().nombre
-                telefonoUsuario = doc.data().telefono
-                userId = doc.id
-            });
-        })
     }
 });
 
 actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual)
-.onSnapshot(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-    
-        // asignar datos de usuarios del salón a sus sillas
-        let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
-        let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
-        let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
-        //asignar valores a variables
-        nombreTarjetaFrente.innerHTML = doc.data().nombre
-        nombreTarjetaAtras.innerHTML = doc.data().nombre
-        telefonoTarjetaAtras.innerHTML = doc.data().telefono
+    .onSnapshot(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            // asignar datos de usuarios del salón a sus sillas
+            let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
+            let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
+            let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
+            //asignar valores a variables
+            nombreTarjetaFrente.innerHTML = doc.data().nombre
+            nombreTarjetaAtras.innerHTML = doc.data().nombre
+            telefonoTarjetaAtras.innerHTML = doc.data().telefono
 
-    })
-}
-);
+        })
+    });
 //asigna datos de usuario con click 
 //pendiente: cambiar de silla.
 //pendiente: escoger sólo una silla a la vez
@@ -125,24 +122,34 @@ function elegirSilla(silla) {
 
     console.log("silla " + silla + " agregada al usuario " + nombreUsuario)
     db.collection("users").doc(userId).get()
-    .then(function(doc){
-     let sillaActual = doc.data().chair;
-     console.log(sillaActual)
-     // asignar datos de usuarios del salón a sus sillas
-     let nombreTarjetaFrente = document.getElementById("nombre" + sillaActual)
-     let nombreTarjetaAtras = document.getElementById("nombreAtras" + sillaActual)
-     let telefonoTarjetaAtras = document.getElementById("telefono" + sillaActual)
-     //asignar valores a variables
-     nombreTarjetaFrente.innerHTML = sillaActual
-     nombreTarjetaAtras.innerHTML = ""
-     telefonoTarjetaAtras.innerHTML = ""
+        .then(function (doc) {
+            if (doc.data().chair == undefined) {
+                db.collection("users").doc(userId).set({
+                    chair: "0"
+                }, {
+                    merge: true
+                })
+            } else {
 
-    db.collection("users").doc(userId).set({
-        chair: silla
-    }, {
-        merge: true
-    })
- })
+                let sillaAnterior = doc.data().chair;
+            }
+            let sillaAnterior = doc.data().chair;
+            console.log("Silla anterior: ",sillaAnterior)
+            // asignar datos de usuarios del salón a sus sillas
+            let nombreTarjetaFrente = document.getElementById("nombre" + sillaAnterior)
+            let nombreTarjetaAtras = document.getElementById("nombreAtras" + sillaAnterior)
+            let telefonoTarjetaAtras = document.getElementById("telefono" + sillaAnterior)
+            //asignar valores a variables
+            nombreTarjetaFrente.innerHTML = sillaAnterior
+            nombreTarjetaAtras.innerHTML = ""
+            telefonoTarjetaAtras.innerHTML = ""
+
+            db.collection("users").doc(userId).set({
+                chair: silla
+            }, {
+                merge: true
+            })
+        })
 }
 
 
@@ -161,20 +168,20 @@ function elegirSilla(silla) {
 //         });
 // realTime()
 
-        // actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual).get()
-        //     .then(function (querySnapshot) {
-        //         querySnapshot.forEach(function (doc) {
-        //             console.log(silla)
-        //             // asignar datos de usuarios del salón a sus sillas
-        //             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
-        //             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
-        //             let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
-        //             //asignar valores a variables
-        //             nombreTarjetaFrente.innerHTML = doc.data().nombre
-        //             nombreTarjetaAtras.innerHTML = doc.data().nombre
-        //             telefonoTarjetaAtras.innerHTML = doc.data().telefono
+// actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual).get()
+//     .then(function (querySnapshot) {
+//         querySnapshot.forEach(function (doc) {
+//             console.log(silla)
+//             // asignar datos de usuarios del salón a sus sillas
+//             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
+//             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
+//             let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
+//             //asignar valores a variables
+//             nombreTarjetaFrente.innerHTML = doc.data().nombre
+//             nombreTarjetaAtras.innerHTML = doc.data().nombre
+//             telefonoTarjetaAtras.innerHTML = doc.data().telefono
 
-        //         })
-        //     })
-        // actualizarSillas()
-    // });
+//         })
+//     })
+// actualizarSillas()
+// });
