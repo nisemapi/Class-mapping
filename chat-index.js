@@ -54,13 +54,14 @@ realTime = () => db.collection("chat").orderBy("id", "desc")/* .where("idSalon",
     .onSnapshot(function(querySnapshot) {
         totalMessages = [];
     querySnapshot.forEach(function(doc) {
+
         totalMessages.push( { name: doc.data().name , message : doc.data().message, time : doc.data().time});
-        console.log(totalMessages)
+
+        //debugger
     });
     console.log(totalMessages);
-    totalMessages.forEach(
-    function mostrar(){
-    var messageName = totalMessages.name;
+    for(var i = 0;i <= totalMessages.length-1;i++){
+    var messageName = totalMessages[i[name]];
     bubble 	= document.createElement('div'),
     p 		= document.createElement('p');
     bubble.classList.add('bubble');
@@ -70,11 +71,11 @@ realTime = () => db.collection("chat").orderBy("id", "desc")/* .where("idSalon",
          bubble.classList.add('left');  
         };
     // linea output
-    p.textContent = totalMessages.name+" :  "+totalMessages.message +"  /  "+ totalMessages.time;
+    p.textContent = totalMessages[i]["name"]+" :  "+totalMessages[i]["message"] +"  /  "+ totalMessages[i]["time"];
     bubble.appendChild(p);
     chats.insertBefore(bubble, chats.LastChild);
     scroll()
-     });
+     };
         
 });
 realTime();
@@ -102,8 +103,8 @@ function postMsg() {
 };
 //function enviar datos
  writeSomething = () => db.collection("chat").add(unidos)
-            .then(function(docRef){
-                console.log("Document written with ID: ", docRef.id);
+            .then(function(doc){
+                console.log("Document written with ID: ", doc.id);
                 console.log(`${doc.data().name} => ${doc.data().message}`);
                 console.log(`${doc.data().time}`);
                 docIds.push(`${doc.id}`);
@@ -121,7 +122,7 @@ function fecha(d){
     entireDate = h+":"+min;
     return (entireDate);}
     else{
-    entireDate= (a*1000)+Math.imul(m, 10)+day+Math.imul(h, 0,01)+Math.imul(min, 0,001)+Math.imul(seg, 0,0001)+Math.imul(mili, 0,00001);
+    entireDate = Date.now()
     return (entireDate);
     }
     };
