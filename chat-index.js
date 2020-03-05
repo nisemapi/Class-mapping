@@ -50,12 +50,17 @@ function scroll(){
     });
     
 }); */
-realTime = () => db.collection("chat").orderBy("id", "asc").where("idSalon", "==" , salonActual)
-    .onSnapshot(function(doc) {
-    console.log(doc.data());
-    // console.log(totalMessages);
-     totalMessages.forEach(function mostrar(){
-    var messageName = doc.data().name;
+realTime = () => db.collection("chat").orderBy("id", "desc")/* .where("idSalon", "==" , salonActual) */
+    .onSnapshot(function(querySnapshot) {
+        totalMessages = [];
+    querySnapshot.forEach(function(doc) {
+        totalMessages.push( { name: doc.data().name , message : doc.data().message, time : doc.data().time});
+        console.log(totalMessages)
+    });
+    console.log(totalMessages);
+    totalMessages.forEach(
+    function mostrar(){
+    var messageName = totalMessages.name;
     bubble 	= document.createElement('div'),
     p 		= document.createElement('p');
     bubble.classList.add('bubble');
@@ -65,7 +70,7 @@ realTime = () => db.collection("chat").orderBy("id", "asc").where("idSalon", "==
          bubble.classList.add('left');  
         };
     // linea output
-    p.textContent = `${doc.data().name}`+"   "+`${doc.data().message}` +"  /  "+ `${doc.data().time}`;
+    p.textContent = totalMessages.name+" :  "+totalMessages.message +"  /  "+ totalMessages.time;
     bubble.appendChild(p);
     chats.insertBefore(bubble, chats.LastChild);
     scroll()
