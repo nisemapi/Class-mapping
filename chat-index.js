@@ -6,9 +6,9 @@ p 		= document.createElement('p');
 var docIds=[],unidos={},salonActual = "",userName="", totalMessages = [];
 //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
-    if (user==null){
+    if (user== null ){
         window.location.href = "index.html";
-    }else{
+     }else{
    let uid = user.uid
    // console.log("uid: ", uid);
    db.collection("users").where("authId", "==", uid)
@@ -28,7 +28,7 @@ auth.onAuthStateChanged( user => {
            });
        });
     }
-       });
+});
    
 //scroll fuction 
 function scroll(){
@@ -127,3 +127,9 @@ function logout() {
         console.log("El usuario ha cerrado sesión")
     });
 }
+//funcion volver al salon
+    function salonReIn() {
+            window.location.href = "Salon.html";
+            console.log("El usuario ha vuelto al salon")
+    }
+
