@@ -22,9 +22,21 @@ body {
 p {
     color: white;
 }
+
 .crearu {
     display: flex;
     justify-content: center;
     align-content: center;
     padding-top: 20px;
+}
+button {
+    border-radius: 10px;
+    border: 2px solid #4B0082;
+    color: #4B0082;
+}
+#c-usu {
+    margin-right: 10px;
+}
+#hom {
+    margin-left: 10px;
 }
