@@ -1,53 +1,30 @@
 body {
-    margin: 0;
-    height: 100vh;
-    display: grid;
-    justify-items: center;
+    display: flex;
+    background-repeat: no-repeat;
+    justify-content: center;
+    height: 97vh;
     align-items: center;
-    color: aliceblue;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-}
-.fondo{
-    width: 100%;
-    height: 657px;
-}
-.contenedor{
-    width: 240px;
-    margin-top: -680px;
-    background: linear-gradient(to top, #ffa500 0%, #4b0082 100%);
-    opacity: 0.95;
-    padding-top: 160px;
-    padding-bottom: 80px;
-    padding-left: 50px;
-    padding-right: 50px;
+    background-image: url(fondo.jpg);
+    margin: auto;
+  }
+
+.u-ser {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 350px;
+    height: 350px;
+    background-color: #ffffff38;
     border-radius: 10px;
-}
-#email{
-    margin-bottom: 15px;
-    border-color: #4b0082;
-    border-radius: 50px;
-    padding: 4%;
-    margin-left: 9.6%;
+    border: 2px solid #FFA500;
 }
 
-#password{
-    margin-bottom: 30px;
-    border-color: #4b0082;
-    border-radius: 50px;
-    padding: 4%;
-    margin-left: 9.6%;
+p {
+    color: white;
 }
-.boton, #sign-in, #sign-up {
-    border-color: #4b0082;
-    border-radius: 25px;
-    padding: 7px 30px 7px 5px;
-    margin-left: 12px;
+.crearu {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 20px;
 }
-.logo{
-   text-align: center;
-   margin-top: -120px;
-   margin-bottom: 25px;
-}
-
-
