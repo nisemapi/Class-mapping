@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reg.css">
     <title>Document</title>
 </head>
+
 <body>
     <!-- Contraseña <input id="password" type="password"><br> -->
-    <form id="crear-usuario" >
-        <input id="nombre" type="text" placeholder="Ingresa tu nombre"><br>
-        <input id="telefono" type="number" placeholder="Ingresa tu # celular"><br>
-        <input id="email" type="email" placeholder="Ingresa tu e-mail"><br>
-        <input id="password" type="password" placeholder="Ingresa tu contraseña"><br>
-        <input id="password2" type="password" placeholder="Confirma tu contraseña"><br>
-        <p>Quieres crear un salón?</p>
-        <select onchange="mostrar()" name="opcion-salon" id="opcion-salon">
-            <option value="si">Si, crear salón nuevo</option>
-            <option value="no" selected>No, ya tengo un ID de salón</option>
-        </select>
-    </form>
-    <form id="crear-salon" style="display: none;">
-        <input type="text" name="nombre-salon" id="nombre-salon" placeholder="Ingresa nombre del salon"><br>
-        <input type="text" name="filas" id="filas" placeholder="¿Cuántas filas?"><br>
-        <input type="text" name="columnas" id="columnas" placeholder="¿Cuántas columnas?">
-    </form>
-    <form id="ingresar-salon">
-        <input type="text" id="id-salon" placeholder="Ingresa el ID del salón">
-    </form>
+    <div class="u-ser">
+        <form id="crear-usuario">
+            <div>
+                <input id="nombre" type="text" placeholder="Ingresa tu nombre"><br>
+                <input id="telefono" type="number" placeholder="Ingresa tu # celular"><br>
+                <input id="email" type="email" placeholder="Ingresa tu e-mail"><br>
+                <input id="password" type="password" placeholder="Ingresa tu contraseña"><br>
+                <input id="password2" type="password" placeholder="Confirma tu contraseña"><br>
+                <p>Quieres crear un salón?</p>
+                <select onchange="mostrar()" name="opcion-salon" id="opcion-salon">
+                    <option value="si">Si, crear salón nuevo</option>
+                    <option value="no" selected>No, ya tengo un ID de salón</option>
+                </select>
+            </div>
+           
+        </form>
 
-    <button onclick="crearUsuario()">Crear</button>
-    <button onclick= "window.location.href='index.html'">Home</button>
+        <form id="crear-salon" style="display: none;">
+            <input type="text" name="nombre-salon" id="nombre-salon" placeholder="Ingresa nombre del salon"><br>
+            <input type="text" name="filas" id="filas" placeholder="¿Cuántas filas?"><br>
+            <input type="text" name="columnas" id="columnas" placeholder="¿Cuántas columnas?">
+        </form>
+        
+        <div>
+            <form id="ingresar-salon">
+                <input type="text" id="id-salon" placeholder="Ingresa el ID del salón">
+            </form>
+        </div>
+        <div class="crearu">
+            <button onclick="crearUsuario()">Crear</button>
+            <button onclick="window.location.href='index.html'">Home</button>
+        </div>
+    </div>
+
+    
+
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
@@ -40,7 +56,7 @@
             authDomain: 'classmappingb.firebaseapp.com',
             projectId: 'classmappingb',
             databaseURL: "https://classmappingb.firebaseio.com/"
-            };
+        };
         firebase.initializeApp(firebaseConfig);
 
         //make auth and firestore references
@@ -51,4 +67,5 @@
     </script>
     <script src="reg.js"></script>
 </body>
+
 </html>
