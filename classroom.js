@@ -96,7 +96,7 @@ db.collection("users").where("authId", "==", uid)
         console.log(silla)
        console.log(nombreUsuario)
        let nombreTarjetaFrente = document.getElementById("nombre"+silla)
-       nombreTarjetaFrente.style.fontSize = "250%"
+    //    nombreTarjetaFrente.style.fontSize = "250%"
        let nombreTarjetaAtras= document.getElementById("nombreAtras"+silla)
        let telefonoTarjetaAtras = document.getElementById("telefono"+silla)
         nombreTarjetaFrente.innerHTML = nombreUsuario
