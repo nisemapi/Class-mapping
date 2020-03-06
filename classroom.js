@@ -102,7 +102,22 @@ auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtie
 
 actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual)
     .onSnapshot(function (querySnapshot) {
+        var fcf = document.getElementsByClassName("flip-card-front")
+        var fcb = document.getElementsByClassName("date")
+        for (let index = 0; index < fcf.length; index++) {
+            // console.log(tarjetas[index].children[index].children[index].children[index].innerHTML)
+            // console.log(fcf[index].children[0].innerHTML)
+            // console.log("algo: ",fcb[index].children[0].innerHTML)
+            // console.log("la silla: ",silla)
+            fcf[index].children[0].innerHTML=index+1
+            // fcb[index].children[0].innerHTML=""
+        }
+
+
         querySnapshot.forEach(function (doc) {
+            console.log("cuos")
+            // console.log("tarjetas: ",tarjetas)
+            // console.log("tarjetas.length: ",tarjetas.length)
             // asignar datos de usuarios del salón a sus sillas
             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
