@@ -43,22 +43,46 @@ html, body { height: 100%; overflow: hidden; }
     z-index: 2;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
-text-transform: uppercase;
-text-align: left;
-padding: 10px 10px 10px 50px;
-
-h1, h2 {
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 10px 10px 50px;
+    position: fixed;
+}
+#h3-id-salon{
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  color: rgb(0, 0, 0);
+}
+#online{
+  text-align: right;
+  color: rgb(42, 184, 42);
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+#h3-nombre{
+  text-align: right;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+/* h1, h2 {
   font-weight: normal;
   font-size: 10px;
   margin: 0;
   padding: 0;
-}
+  position: fixed;
+  color: black;
+} */
 
-h2 {
+/* h2 {
   color: rgba(255, 255, 255, .5);
   font-size: 8px;
   letter-spacing: 1px;
-}
+} */
 
 .avatar {
   position: absolute;
@@ -72,14 +96,21 @@ h2 {
   margin: 0;
   padding: 0;
   border: 2px solid rgba(255, 255, 255, 0.24);
-  
-}
 }
 
 #img {
-    width: 30%;
-    height: 30%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-self: center;
+    align-self: center;
   }
   
-  
+  body{
+    background-image: url(https://esports.as.com/2019/04/09/league-of-legends/skins-Invictus-Gaming-convierten-figuritas_1234686525_144882_1090x600.jpg);
+    background-repeat: no-repea;
+    background-size: 100%;
+    margin:1;
+    margin: 0px;
+}
     
