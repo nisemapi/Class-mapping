@@ -102,7 +102,17 @@ auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtie
 
 actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual)
     .onSnapshot(function (querySnapshot) {
+        var fcf = document.getElementsByClassName("flip-card-front")
+        var fcb = document.getElementsByClassName("date")
+        for (let index = 0; index < fcf.length; index++) {//blanquear datos de tarjetas al actualizar sillas
+            fcf[index].children[0].innerHTML=index+1
+            // fcb[index].children[0].innerHTML=""
+            //pendiente blanquear back card
+        }
+
+
         querySnapshot.forEach(function (doc) {
+            console.log("cuos")
             // asignar datos de usuarios del salón a sus sillas
             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
@@ -151,37 +161,3 @@ function elegirSilla(silla) {
             })
         })
 }
-
-
-
-// realTime = () => db.collection("users").where("idSalon", "==", doc.data().idSalon)
-//     .onSnapshot(function (querySnapshot) {
-//         querySnapshot.forEach(function (doc) {
-//             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
-//             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
-//             let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
-//             //asignar valores a variables
-//             nombreTarjetaFrente.innerHTML = doc.data().nombre
-//             nombreTarjetaAtras.innerHTML = doc.data().nombre
-//             telefonoTarjetaAtras.innerHTML = doc.data().telefono
-
-//         });
-// realTime()
-
-// actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActual).get()
-//     .then(function (querySnapshot) {
-//         querySnapshot.forEach(function (doc) {
-//             console.log(silla)
-//             // asignar datos de usuarios del salón a sus sillas
-//             let nombreTarjetaFrente = document.getElementById("nombre" + doc.data().chair)
-//             let nombreTarjetaAtras = document.getElementById("nombreAtras" + doc.data().chair)
-//             let telefonoTarjetaAtras = document.getElementById("telefono" + doc.data().chair)
-//             //asignar valores a variables
-//             nombreTarjetaFrente.innerHTML = doc.data().nombre
-//             nombreTarjetaAtras.innerHTML = doc.data().nombre
-//             telefonoTarjetaAtras.innerHTML = doc.data().telefono
-
-//         })
-//     })
-// actualizarSillas()
-// });
