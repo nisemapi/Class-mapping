@@ -1,12 +1,18 @@
 body {
     display: flex;
-    background-repeat: no-repeat;
     justify-content: center;
-    height: 97vh;
     align-items: center;
+    background-repeat: no-repeat;
+    height: 97vh;
     background-image: url(fondo.jpg);
+    background-position: bottom;
     margin: auto;
   }
+
+#crear-usuario {
+    display: flex;
+    text-align: center;
+}
 
 .u-ser {
     display: grid;
@@ -29,6 +35,11 @@ p {
     align-content: center;
     padding-top: 20px;
 }
+
+#ingresar-salon {
+    text-align: center;
+}
+
 button {
     border-radius: 10px;
     border: 2px solid #4B0082;
