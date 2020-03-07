@@ -3,30 +3,54 @@ inp 	= document.getElementById('inp'),
 chats	= document.getElementById('chatWindow'),
 bubble 	= document.createElement('div'),
 p 		= document.createElement('p');
-var docIds=[],unidos={},salonActual = "", userName="" ;
+var docIds=[],unidos={},salonActual = "" ;
 //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
     if (user== null ){
         window.location.href = "index.html";
-     }else{
-   let uid = user.uid
-   // console.log("uid: ", uid);
-   db.collection("users").where("authId", "==", uid)
-       .get()
-       .then(function(querySnapshot){
-           querySnapshot.forEach(function(doc) {
-               salonActual = doc.data().idSalon;
-               userName =doc.data().nombre;
-               document.getElementById("h3-nombre").innerHTML = userName
-               // nombre salon 
-               db.collection("salones").doc(salonActual).get()
-               .then(function(doc){
-                   let nombreSalon = document.getElementById("h3-id-salon")
-                   nombreSalon.innerHTML = doc.data().nombre
-                   
-                }); 
-            });
-        });
+    }else{
+        let uid = user.uid;
+        // console.log("uid: ", uid);
+       db.collection("users").where("authId", "==", uid)
+            .get()
+            .then(function(querySnapshot){
+                querySnapshot.forEach(function(doc) {
+                    salonActual = doc.data().idSalon;
+                    userName =doc.data().nombre; 
+                    document.getElementById("h3-nombre").innerHTML = userName;
+                    // nombre salon 
+                db.collection("salones").doc(salonActual).get()
+                    .then(function(doc){
+                        let nombreSalon = document.getElementById("h3-id-salon")
+                        nombreSalon.innerHTML = doc.data().nombre
+                        
+                     }); 
+                 });
+                 // inicio funcion realtime
+                 db.collection("chat").orderBy("id", "asc").where("idSalon", "==" , salonActual) 
+                     .onSnapshot(function(snapshot) {
+                     snapshot.docChanges().forEach(function(change) {
+                         if (change.type === "added") {
+                             var messageName = change.doc.data().name;
+                             bubble 	= document.createElement('div'),
+                             p 		= document.createElement('p'),
+                             bubble.classList.add('bubble');
+                              if (userName == messageName){
+                                bubble.classList.add('right');
+                              }else{
+                                  bubble.classList.add('left');  
+                                 };
+                             // linea output
+                             p.textContent = change.doc.data().name+" :  "+change.doc.data().message +"  /  "+ change.doc.data().time;
+                             bubble.appendChild(p);
+                             chats.insertBefore(bubble, chats.LastChild);
+                             scroll()
+                         }
+                     });   
+                 });
+                //fin funcion realtime
+            
+             });
     }
 });
 
@@ -51,34 +75,6 @@ function scroll(){
     
 }); */ 
 
-realTime = () => db.collection("chat").orderBy("id", "asc")/* .where("idSalon", "==" , salonActual) */
-    .onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(function(change) {
-        if (change.type === "added") {
-            var messageName = change.doc.data().name;
-            bubble 	= document.createElement('div'),
-            p 		= document.createElement('p');
-            bubble.classList.add('bubble');
-             if (userName == messageName){
-               bubble.classList.add('right');
-             }else{
-                 bubble.classList.add('left');  
-                };
-                debugger
-            // linea output
-            p.textContent = change.doc.data().name+" :  "+change.doc.data().message +"  /  "+ change.doc.data().time;
-            bubble.appendChild(p);
-            chats.insertBefore(bubble, chats.LastChild);
-            scroll()
-        }
-        
-
-    });
-    
-     
-        
-});
-realTime();
 
 // lector de click y enter
 btn.addEventListener('click', postMsg);
