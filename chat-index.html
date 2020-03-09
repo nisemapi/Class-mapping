@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    
+
     <link rel="stylesheet" href="chat-index.css">
 </head>
+
 <body>
     <div class="wrap">
         <div id="chatWindow" class="container">
@@ -14,19 +16,18 @@
                 <h1 id="h3-id-salon">Grupo Bictia</h1>
                 <h1 id="h3-nombre">nombre</h1>
                 <h2 id="online">Online</h2>
-                
+
                 <figure class="avatar">
-                  <img src="https://www.nocreasnada.com/wp-content/uploads/2019/06/2019-06-04_5cf6bdff09030_warframe-button-1550875935085.jpg" id="img"/></figure>
-              </div>
-            
+                    <img src="https://www.nocreasnada.com/wp-content/uploads/2019/06/2019-06-04_5cf6bdff09030_warframe-button-1550875935085.jpg"
+                        id="img" /></figure>
+            </div>
+
         </div>
         <div id="inputWindow" class="form">
             <input id="inp" type="text" />
             <input id="btn" type="button" value="Send" />
         </div>
     </div>
-    <button onclick="logout()"> log out</button>
-    <button onclick="salonReIn()"> volver al salon</button>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
@@ -37,7 +38,7 @@
             authDomain: 'classmappingb.firebaseapp.com',
             projectId: 'classmappingb',
             databaseURL: "https://classmappingb.firebaseio.com/"
-            };
+        };
         firebase.initializeApp(firebaseConfig);
 
         //make auth and firestore references
@@ -48,4 +49,5 @@
     </script>
     <script src="chat-index.js"></script>
 </body>
+
 </html>

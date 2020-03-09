@@ -2,7 +2,9 @@ var btn 	= document.getElementById('btn'),
 inp 	= document.getElementById('inp'), 
 chats	= document.getElementById('chatWindow'),
 bubble 	= document.createElement('div'),
-p 		= document.createElement('p');
+p 		= document.createElement('p'),
+dropdrow = document.createElement('div'),
+icono = document.createElement('img');
 var docIds=[],unidos={},salonActual = "" ;
 //autenticacion para nombre-salon
 auth.onAuthStateChanged( user => {
@@ -11,41 +13,40 @@ auth.onAuthStateChanged( user => {
     }else{
         let uid = user.uid;
         // console.log("uid: ", uid);
-        db.collection("users").where("authId", "==", uid)
-        .get()
-        .then(function(querySnapshot){
-            querySnapshot.forEach(function(doc) {
-                salonActual = doc.data().idSalon;
-                userName =doc.data().nombre; 
-                document.getElementById("h3-nombre").innerHTML = userName;
-                // nombre salon 
+       db.collection("users").where("authId", "==", uid)
+            .get()
+            .then(function(querySnapshot){
+                querySnapshot.forEach(function(doc) {
+                    salonActual = doc.data().idSalon;
+                    userName =doc.data().nombre; 
+                    document.getElementById("h3-nombre").innerHTML = userName;
+                    // nombre salon 
                 db.collection("salones").doc(salonActual).get()
-                .then(function(doc){
-                    let nombreSalon = document.getElementById("h3-id-salon")
-                    nombreSalon.innerHTML = doc.data().nombre
-                    
-                }); 
+                    .then(function(doc){
+                        let nombreSalon = document.getElementById("h3-id-salon")
+                        nombreSalon.innerHTML = doc.data().nombre
+                        
+                     }); 
                  });
                  // inicio funcion realtime
                  db.collection("chat").orderBy("id", "asc").where("idSalon", "==" , salonActual) 
-                 .onSnapshot(function(snapshot) {
+                     .onSnapshot(function(snapshot) {
                      snapshot.docChanges().forEach(function(change) {
                          if (change.type === "added") {
                              var messageName = change.doc.data().name;
-                             bubble 	= document.createElement('div'),
-                             p 		= document.createElement('p')/* ,
-                             icono = document.createElement('img') */;
                              bubble.classList.add('bubble');
-                             if (userName == messageName){
-                                 bubble.classList.add('right');
+                             dropdrow.classList.add('dropdown-content');
+                              if (userName == messageName){
+                                bubble.classList.add('right');
                               }else{
                                   bubble.classList.add('left');  
                                  };
                              // linea output
                              p.textContent = change.doc.data().name+" :  "+change.doc.data().message +"  /  "+ change.doc.data().time;
-                             /* icono.src= "https://cdn2.iconfinder.com/data/icons/cleaning-19/30/30x30-10-512.png"; */
+                             icono.src= "https://cdn2.iconfinder.com/data/icons/cleaning-19/30/30x30-10-512.png";
                              bubble.appendChild(p);
-                            /*  bubble.appendChild(icono); */
+                             bubble.appendChild(dropdrow);
+                             dropdrow.appendChild(icono);
                              chats.insertBefore(bubble, chats.LastChild);
                              scroll()
                          }
@@ -104,7 +105,6 @@ function postMsg() {
  writeSomething = () => db.collection("chat").add(unidos)
             .then(function(doc){
                 console.log("Document written with ID: ", doc.id);
-                docIds.push(`${doc.id}`);
             })
             .catch(function(error) {
                     console.error("Error sending message: ", error);
