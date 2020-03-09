@@ -106,6 +106,8 @@ actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActu
         var fcb = document.getElementsByClassName("date")
         for (let index = 0; index < fcf.length; index++) {//blanquear datos de tarjetas al actualizar sillas
             fcf[index].children[0].innerHTML=index+1
+            fcb[index].children[0].innerHTML=""
+            fcb[index].children[1].innerHTML=""
             // fcb[index].children[0].innerHTML=""
             //pendiente blanquear back card
         }
