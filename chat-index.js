@@ -123,16 +123,3 @@ function fecha(d){
     return (entireDate);
     }
     };
-//funcion log out
-function logout() {
-    auth.signOut().then(() => {
-        window.location.href = "index.html";
-        console.log("El usuario ha cerrado sesión")
-    });
-}
-//funcion volver al salon
-    function salonReIn() {
-            window.location.href = "Salon.html";
-            console.log("El usuario ha vuelto al salon")
-    }
-
