@@ -108,8 +108,6 @@ actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActu
             fcf[index].children[0].innerHTML=index+1
             fcb[index].children[0].innerHTML=""
             fcb[index].children[1].innerHTML=""
-            // fcb[index].children[0].innerHTML=""
-            //pendiente blanquear back card
         }
 
 
@@ -127,9 +125,6 @@ actualizarSillas = () => db.collection("users").where("idSalon", "==", salonActu
         })
     });
 //asigna datos de usuario con click 
-//pendiente: cambiar de silla.
-//pendiente: escoger sólo una silla a la vez
-//guardar silla elegida del usuario en db
 function elegirSilla(silla) {
 
     console.log("silla " + silla + " agregada al usuario " + nombreUsuario)
