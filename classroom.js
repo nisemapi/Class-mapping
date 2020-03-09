@@ -69,6 +69,7 @@ auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtie
         let f = 0
         let c = 0
         let nombre = document.getElementById("h3-nombre");
+        let usuarioName = document.getElementById("usuario-name");
         uid = user.uid
 
         // console.log("uid: ", uid);
@@ -84,14 +85,15 @@ auth.onAuthStateChanged(user => { //verifica el cambio en autenticación y obtie
                                 c = doc.data().columnas
                                 crearSalon(f, c)
                                 let nombreSalon = document.getElementById("h3-id-salon")
-                                nombreSalon.innerHTML = doc.data().nombre + " " + salonActual
+                                nombreSalon.innerHTML = "Nombre de salón: " +doc.data().nombre 
 
                             }
                             actualizarSillas()
                         })
                 })
                 querySnapshot.forEach(function (doc) {
-                    nombre.innerHTML = doc.data().nombre
+                    usuarioName.innerHTML= "Bienvenido " + doc.data().nombre
+                    nombre.innerHTML = "Id de salón: "+ salonActual
                     nombreUsuario = doc.data().nombre
                     telefonoUsuario = doc.data().telefono
                     userId = doc.id
