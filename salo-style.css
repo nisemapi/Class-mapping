@@ -1,11 +1,11 @@
 
 body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-repeat: no-repeat;
   justify-content: center;
   height: 97vh;
-  align-items: center;
+  /* align-items: center; */
   background-image: url(fondo.jpg);
   margin: auto;
 }
@@ -22,7 +22,7 @@ body {
 .banner,
 .welcome,
 h3 {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: auto;
   background-color: #FFA500;
   border-radius: 0px 0px 25px 25px;
