@@ -132,26 +132,6 @@ function elegirSilla(silla) {
     console.log("silla " + silla + " agregada al usuario " + nombreUsuario)
     db.collection("users").doc(userId).get()
         .then(function (doc) {
-            if (doc.data().chair == undefined) {
-                db.collection("users").doc(userId).set({
-                    chair: "0"
-                }, {
-                    merge: true
-                })
-            } else {
-
-                let sillaAnterior = doc.data().chair;
-            }
-            let sillaAnterior = doc.data().chair;
-            console.log("Silla anterior: ",sillaAnterior)
-            // asignar datos de usuarios del salón a sus sillas
-            let nombreTarjetaFrente = document.getElementById("nombre" + sillaAnterior)
-            let nombreTarjetaAtras = document.getElementById("nombreAtras" + sillaAnterior)
-            let telefonoTarjetaAtras = document.getElementById("telefono" + sillaAnterior)
-            //asignar valores a variables
-            nombreTarjetaFrente.innerHTML = sillaAnterior
-            nombreTarjetaAtras.innerHTML = ""
-            telefonoTarjetaAtras.innerHTML = ""
 
             db.collection("users").doc(userId).set({
                 chair: silla
