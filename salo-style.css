@@ -78,8 +78,8 @@ iframe {
   grid-template-columns: auto;
   float: left;
   background-color: transparent;
-  width: 250px;
-  height: 250px;
+  width: 100px;
+  height: 100px;
   perspective: 0px;
   text-align: center;
   align-items: center;
@@ -332,5 +332,18 @@ button {
 
   #salir {
     width: 75%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .bottom{
+    flex-direction: column;
+  }
+  iframe {
+    width: 100vw;
+    height: 60vw;
+  }
+  .left {
+    width: 100%;
+    margin: 0;
   }
 }
